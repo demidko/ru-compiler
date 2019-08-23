@@ -1,6 +1,7 @@
 package com.farpost.aot.compiler;
 
 import org.apache.lucene.util.CharsRef;
+import org.apache.lucene.util.IntsRef;
 import org.apache.lucene.util.fst.*;
 
 import java.io.IOException;
@@ -10,14 +11,9 @@ import java.io.IOException;
  * Фасад для дефолтного билдера
  * По сути, этот класс - статическая функция, что и отражено в названии
  */
-public final class CreateFst {
-
-	private static void add(Builder<CharsRef> builder, int key, String val) {
-
-	}
+final class CreateFst {
 
 	/**
-	 *
 	 * @param arr массив (необязательно уникальных) строк
 	 * @return fst где в соответствие каждому индексу поставлена его строка
 	 */
@@ -27,7 +23,7 @@ public final class CreateFst {
 			CharSequenceOutputs.getSingleton()
 		);
 		for (int key = 0; key < arr.length; ++key) {
-			add(builder, key, arr[key]);
+			builder.add(new IntsRef(new int[]{key}, 0, 1), new CharsRef(arr[key]));
 		}
 		return builder.finish();
 	}
