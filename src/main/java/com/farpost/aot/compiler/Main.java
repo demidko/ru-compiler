@@ -1,3 +1,5 @@
+package com.farpost.aot.compiler;
+
 import org.apache.lucene.util.CharsRef;
 import org.apache.lucene.util.fst.Builder;
 import org.apache.lucene.util.fst.CharSequenceOutputs;
